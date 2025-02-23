@@ -83,8 +83,8 @@ public class ManagementCompany {
     }
 
     /**
-     * Method to create a department
-     * @param department Department to create and add to the departmentsList
+     * Method to assign a department to the departmentsList
+     * @param department Department to create
      */
     public void createDepartment(Department department) {
         if (!verifyDepartment(department.getCode())) {
@@ -95,7 +95,7 @@ public class ManagementCompany {
     /**
      * Method to verify if exist a department with the same code as one given
      * @param code Code to verify
-     * @return Boolean if the department was found or no
+     * @return Boolean if the department was found or not
      */
     public boolean verifyDepartment(int code) {
         boolean found = false;
@@ -108,6 +108,11 @@ public class ManagementCompany {
         return found;
     }
 
+    /**
+     * Method to update a department's information
+     * @param code Code of the department to update
+     * @param newDepartment Department with the new information
+     */
     public void updateDepartment(int code, Department newDepartment) {
         for (Department department : departmentsList) {
             if (department.getCode() == code){
@@ -120,6 +125,10 @@ public class ManagementCompany {
         }
     }
 
+    /**
+     * Method to delete a department from the departmentsList
+     * @param code Code of the department to delete
+     */
     public void deleteDepartment(int code) {
         for (Department department : departmentsList) {
             if (department.getCode() == code && department.getEmployeesList().isEmpty()) {
@@ -129,6 +138,10 @@ public class ManagementCompany {
         }
     }
 
+    /**
+     * Method to assign an employee to the employeesList
+     * @param employee Employee to create
+     */
     public void createEmployee(Employee employee) {
         if (!verifyEmployee(employee.getId())){
             employeesList.add(employee);
@@ -136,6 +149,11 @@ public class ManagementCompany {
         }
     }
 
+    /**
+     * Method to verify if exists an employee with the same id as one given
+     * @param id ID to verify
+     * @return Boolean if the employee was found or not
+     */
     public boolean verifyEmployee(String id) {
         boolean found = false;
         for (Employee employee : employeesList) {
@@ -147,6 +165,11 @@ public class ManagementCompany {
         return found;
     }
 
+    /**
+     * Method to update an employee's information
+     * @param id ID of the employee to update
+     * @param newEmployee Employee with the new information
+     */
     public void updateEmployee(String id, Employee newEmployee) {
         for (Employee employee : employeesList) {
             if (employee.getId().equals(id)) {
@@ -160,6 +183,10 @@ public class ManagementCompany {
         }
     }
 
+    /**
+     * Method to delete an employee from the employeesList
+     * @param id ID of the employee to delete
+     */
     public void deleteEmployee(String id) {
         for (Employee employee : employeesList) {
             if (employee.getId().equals(id)) {
@@ -170,6 +197,11 @@ public class ManagementCompany {
         }
     }
 
+    /**
+     * Method to update an employee department
+     * @param oldEmployee oldEmployee who we want to change its department
+     * @param newEmployee newEmployee with the new department
+     */
     public void updateDepartmentEmployee(Employee oldEmployee, Employee newEmployee) {
         if (oldEmployee.getassociatedDepartment().getCode() != newEmployee.getassociatedDepartment().getCode()) {
             disassociateDepartmentEmployee(oldEmployee);
@@ -178,10 +210,18 @@ public class ManagementCompany {
         }
     }
 
+    /**
+     * Method to assign an employee from a department
+     * @param employee Employee to assign
+     */
     public void assignDepartmentEmployee(Employee employee) {
         employee.getassociatedDepartment().getEmployeesList().add(employee);
     }
 
+    /**
+     * Method to disassociate an employee from a department
+     * @param employee Employee to disassociate
+     */
     public void disassociateDepartmentEmployee(Employee employee) {
         employee.getassociatedDepartment().getEmployeesList().remove(employee);
     }
