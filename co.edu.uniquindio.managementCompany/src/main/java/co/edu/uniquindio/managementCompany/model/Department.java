@@ -18,6 +18,10 @@ public class Department {
         this.employeesList = new LinkedList<>();
     }
 
+    public Department() {
+
+    }
+
     /**
      * Method to obtain the department's name
      * @return Department's name
